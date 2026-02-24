@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JRU Online Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/nav.js"></script>
+</head>
+
+<body class="bg-[#0b0f19] text-gray-800">
+
+<div id="navbar-placeholder"></div>
+<!-- HERO SECTION -->
+<section class="relative min-h-screen pt-24 flex items-center justify-center overflow-hidden bg-[#0b0f19] text-white">
+
+    <!-- Radial Glow Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.18),transparent_65%)]"></div>
+
+    <div class="relative z-10 max-w-4xl px-6 text-center">
+
+        <!-- JRU Logo with Enhanced Glassmorphism -->
+        <div class="mb-8 relative">
+            <div class="w-32 h-32 mx-auto relative group">
+                <!-- Logo Background Circle -->
+                <div class="absolute inset-0 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-full shadow-2xl shadow-black/40 group-hover:bg-white/20 group-hover:border-yellow-400/50 transition-all duration-300 group-hover:scale-105"></div>
+                
+                <!-- Logo Container -->
+                <div class="relative w-full h-full flex items-center justify-center p-4">
+                    <img src="/assets/jrulogo.jpg" alt="Jharkhand Rai University Logo" class="w-full h-full object-contain rounded-full z-10">
+                </div>
+                
+                <!-- Subtle Glow Effect -->
+                <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Badge with Glassmorphism -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl px-5 py-2 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffdd00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles-icon lucide-sparkles">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>
+            </svg>
+            <span class="text-sm tracking-wide font-medium text-yellow-300">
+        Jharkhand Rai University, Ranchi
+      </span>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="mt-10 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
+            <span class="block text-gray-100">Online</span>
+            <span class="block bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-600 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(212,175,55,0.25)]">
+        Result Portal
+      </span>
+        </h1>
+
+        <!-- Description -->
+        <p class="mt-8 mx-auto max-w-2xl text-lg text-gray-400 leading-relaxed">
+            Access your examination results securely and instantly.
+            <br />
+            <span class="text-yellow-400 font-medium">
+        Best of luck for your exam result!
+      </span>
+        </p>
+
+        <!-- CTA Button with Glassmorphism -->
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button class="px-8 py-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white font-semibold shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300">
+                <a href="ResultPage.html" class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Check Result
+                </a>
+            </button>
+            <button class="px-8 py-3 rounded-lg bg-yellow-500/20 backdrop-blur-xl border border-yellow-500/30 text-yellow-300 font-semibold shadow-lg hover:bg-yellow-500/30 hover:scale-105 transition-all duration-300">
+                <a href="Notice.html" class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 7H4a2 2 0 00-2 2v10a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z"></path>
+                    </svg>
+                    View Notices
+                </a>
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="w-full bg-black/40 backdrop-blur-xl border-t border-white/10 px-4 py-12 text-sm text-gray-400">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <!-- University Info -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="relative w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-2">
+                        <img src="/assets/jrulogo.jpg" alt="JRU Logo" class="w-full h-full rounded-full">
+                    </div>
+                    <h3 class="text-white font-semibold">Jharkhand Rai University</h3>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Providing quality education and fostering excellence in higher learning since its establishment.
+                </p>
+                <div class="space-y-2 text-xs">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2l-4-4m2 2l-4 4m6-6v6m-6-6h6"/>
+                        </svg>
+                        <span>UGC Approved</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2l-4-4m2 2l-4 4m6-6v6m-6-6h6"/>
+                        </svg>
+                        <span>NAAC Accredited</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2l-4-4m2 2l-4 4m6-6v6m-6-6h6"/>
+                        </svg>
+                        <span>ISO 9001:2015</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a href="/results" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <span>Check Results</span>
+                    </a></li>
+                    <li><a href="/notices" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 7H4a2 2 0 00-2 2v10a2 2 0 002 2h6a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+                        </svg>
+                        <span>Exam Notices</span>
+                    </a></li>
+                    <li><a href="/contact" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Contact Us</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V7m0 4h8m-8-4h8"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 21l8-8m-8 8l8 8"/>
+                        </svg>
+                        <span>Academic Calendar</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 1h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V3a2 2 0 012-2z"/>
+                        </svg>
+                        <span>Library</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- Programs -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Programs</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-4h.01M9 17v2m6-4h.01M12 3v18"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>B.Tech Programs</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857z"/>
+                        </svg>
+                        <span>Agriculture</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318-6.317a2 2 0 10-3.998 0l-.318 6.317a6 6 0 00-3.86.517l-2.387.477a2 2 0 00-1.022.547L3.572 15.428a2 2 0 00-.547 1.022l2.387.477a6 6 0 003.86-.517l.318 6.317a2 2 0 103.998 0l.318-6.317a6 6 0 003.86-.517l2.387-.477a2 2 0 001.022-.547z"/>
+                        </svg>
+                        <span>Pharmacy</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18M8 6V4m0 2h10m-6 6v6m-6-6h6"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2z"/>
+                        </svg>
+                        <span>Law Programs</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 text-gray-400 hover:text-yellow-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Management</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact & Social -->
+            <div>
+                <h3 class="text-white font-semibold mb-4">Connect With Us</h3>
+                <div class="space-y-4">
+                    <!-- Contact Info -->
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span>Ranchi, Jharkhand - 834001</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.286a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>+91 651-234-5678</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>info@jru.edu.in</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-xs text-gray-500 mb-3">Follow Us</p>
+                        <div class="flex gap-3">
+                            <a href="https://www.facebook.com/jruuniversity" target="_blank" class="w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center hover:bg-white/20 hover:border-blue-400/50 transition-all duration-300 group">
+                                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a2 2 0 00-2 2v16a2 2 0 002-2 2h14a2 2 0 002-2 2v-2a2 2 0 00-2-2h-14a2 2 0 00-2 2z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9v6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/jruuniversity" target="_blank" class="w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center hover:bg-white/20 hover:border-pink-400/50 transition-all duration-300 group">
+                                <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M7 12h.01M15 12h.01M17 12h.01"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.twitter.com/jruuniversity" target="_blank" class="w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center hover:bg-white/20 hover:border-sky-400/50 transition-all duration-300 group">
+                                <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10 10 0 11-18 0 9 9 0 0118 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 3a10 10 0 11-18 0 9 9 0 0118 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7v5.5a2.5 2.5 0 00-3.535-1.464l-1.464-1.464a2.5 2.5 0 00-3.535-1.464l-1.464-1.464A2.5 2.5 0 003.535-1.464l1.464-1.464z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/school/jruuniversity" target="_blank" class="w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center hover:bg-white/20 hover:border-blue-600/50 transition-all duration-300 group">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 0v16a4 4 0 004 4h4a4 4 0 004-4V4a4 4 0 004-4z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.05 2.05A2.05 2.05 0 002.91 2.91 0l5.95 5.95a2.05 2.05 0 002.91-2.91l-5.95-5.95A2.05 2.05 0 002.91-2.91L8.05 2.05A2.05 2.05 0 002.91-2.91z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@jruuniversity" target="_blank" class="w-10 h-10 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl flex items-center justify-center hover:bg-white/20 hover:border-red-400/50 transition-all duration-300 group">
+                                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22.54 6.42a2 2 0 00-1.46-.55l-3.19 3.19a2 2 0 00-1.46-.55l-3.19 3.19a2 2 0 001.46.55 3.19l3.19 3.19a2 2 0 001.46.55 3.19l3.19 3.19a2 2 0 001.46.55 3.19z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.96 12.7a2.25 2.25 0 112.25 0l2.75 2.75a2.25 2.25 0 112.25 0l-2.75 2.75a2.25 2.25 0 112.25 0l-2.75 2.75a2.25 2.25 0 112.25 0z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Footer -->
+        <div class="border-t border-white/10 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs">
+                    2025 Jharkhand Rai University. All rights reserved.
+                </p>
+                <div class="flex gap-4 text-xs">
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition-colors">Privacy Policy</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition-colors">Terms of Service</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition-colors">Cookie Policy</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition-colors">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu functionality
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>

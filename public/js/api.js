@@ -5,7 +5,7 @@
 
 class SRMSAPI {
     constructor() {
-        this.baseURL = window.location.origin + '/api/results';
+        this.baseURL = window.location.origin + '/api/results.php';
     }
 
     async request(endpoint, options = {}) {
@@ -36,7 +36,18 @@ class SRMSAPI {
     // Results API
     async getResults(params = {}) {
         const queryString = new URLSearchParams(params).toString();
-        return this.request(`/results.php?${queryString}`);
+        const url = `${this.baseURL}?${queryString}`;
+        console.log('API URL:', url); // Debug log
+        
+        // Direct fetch call
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.error || `HTTP error! status: ${response.status}`);
+        }
+        
+        return data;
     }
 
     async addResult(resultData) {

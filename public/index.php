@@ -42,7 +42,12 @@ switch ($path) {
         break;
         
     case '/api/results':
-        include '../src/controllers/results.php';
+        include 'api/results.php';
+        break;
+        
+    case '/ResultShow.php':
+    case '/ResultShow':
+        include 'ResultShow.php';
         break;
         
     default:

@@ -1,0 +1,9 @@
+# API Directory .htaccess
+# Enable URL rewriting for API endpoints
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Route all API requests to results.php
+    RewriteRule ^(.*)$ results.php [L,QSA]
+</IfModule>

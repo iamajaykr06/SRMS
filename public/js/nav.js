@@ -1,12 +1,26 @@
 // script.js
 function loadNavbar() {
+    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    if (!navbarPlaceholder) {
+        console.warn('Navbar placeholder not found');
+        return;
+    }
+    
     fetch('views/navbar.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load navbar');
+            }
+            return response.text();
+        })
         .then(data => {
-            document.getElementById('navbar-placeholder').innerHTML = data;
+            navbarPlaceholder.innerHTML = data;
 
             // Initialize navbar functionality after loading
             initializeNavbar();
+        })
+        .catch(error => {
+            console.error('Error loading navbar:', error);
         });
 }
 
@@ -29,7 +43,8 @@ function initializeNavbar() {
         
         // Add active state to current page
         if (pageName === currentPage) {
-            link.classList.add('bg-yellow-400/20', 'text-yellow-300');
+            link.classList.add('text-yellow-400', 'border-b-2', 'border-yellow-400', 'pb-1');
+            link.classList.remove('text-gray-400');
             const overlay = link.querySelector('.absolute');
             if (overlay) {
                 overlay.classList.add('bg-yellow-400/20');
@@ -96,5 +111,5 @@ function initializeNavbar() {
     document.head.appendChild(style);
 }
 
-// Run the function when the page loads
-window.onload = loadNavbar;
+// Run the function when the DOM is ready
+document.addEventListener('DOMContentLoaded', loadNavbar);

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10">
+
+<div class="max-w-5xl mx-auto bg-white border shadow">
+
+    <!-- UNIVERSITY HEADER -->
+    <div class="border-b p-6">
+
+        <div class="flex items-center gap-4">
+            <img src="<?= $university['logo_path'] ?>" alt="jru-logo" class="h-16 w-16 object-contain">
+
+            <div>
+                <h1 class="text-2xl font-bold uppercase">
+                    <?= htmlspecialchars($university['name']) ?>
+                </h1>
+                <p class="text-sm">
+                    <?= htmlspecialchars($university['address']) ?>
+                </p>
+                <p class="text-xs text-gray-600">
+                    <?= htmlspecialchars($university['established_text']) ?>
+                </p>
+            </div>
+        </div>
+
+        <h2 class="text-center text-lg font-semibold mt-6 uppercase underline">
+            End Semester Examination - DEC 2025
+        </h2>
+    </div>
+
+    <!-- STUDENT INFO -->
+    <div class="grid grid-cols-2 gap-6 p-6 text-sm">
+
+        <div class="space-y-2">
+            <p><strong>Enrollment No:</strong> <?= $student['roll_no'] ?></p>
+            <p><strong>Name:</strong> <?= htmlspecialchars($student['name']) ?></p>
+            <p><strong>Father's Name:</strong> <?= htmlspecialchars($student['father_name']) ?></p>
+            <p><strong>Mother's Name:</strong> <?= htmlspecialchars($student['mother_name']) ?></p>
+            <p><strong>Programme:</strong> <?= htmlspecialchars($student['program_name']) ?></p>
+        </div>
+
+        <div class="space-y-2 text-right">
+            <p><strong>Registration No:</strong> <?= $student['registration_no'] ?></p>
+            <p><strong>Semester:</strong> <?= $student['current_semester'] ?></p>
+            <p><strong>Date of Birth:</strong> <?= $student['dob'] ?></p>
+        </div>
+
+    </div>
+
+    <!-- COURSE TABLE -->
+    <div class="px-6 pb-6">
+
+        <table class="w-full border text-sm">
+            <thead class="bg-gray-200">
+            <tr>
+                <th class="border p-2">SR.NO.</th>
+                <th class="border p-2">COURSE CODE</th>
+                <th class="border p-2 text-left">COURSE</th>
+                <th class="border p-2">CREDITS</th>
+                <th class="border p-2">GRADE</th>
+                <th class="border p-2">GRADE POINT</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?php foreach ($courses as $index => $course): ?>
+            <tr class="text-center">
+                <td class="border p-2"><?= $index + 1 ?></td>
+                <td class="border p-2"><?= $course['course_code'] ?></td>
+                <td class="border p-2 text-left"><?= htmlspecialchars($course['course_name']) ?></td>
+                <td class="border p-2"><?= $course['credits'] ?></td>
+                <td class="border p-2"><?= $course['grade'] ?></td>
+                <td class="border p-2"><?= $course['grade_point'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <!-- SUMMARY -->
+        <div class="mt-6 grid grid-cols-2 text-sm">
+
+            <div>
+                <p><strong>SGPA:</strong> <?= $summary['sgpa'] ?></p>
+                <p><strong>CGPA:</strong> <?= $summary['cgpa'] ?></p>
+            </div>
+
+            <div class="text-right">
+                <p><strong>Total Credits & EGP:</strong> <?= $summary['total_credits'] ?> / <?= $summary['total_egp'] ?></p>
+                <p><strong>Cumulative Credits & EGP:</strong> <?= $summary['cumulative_credits'] ?> / <?= $summary['cumulative_egp'] ?></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

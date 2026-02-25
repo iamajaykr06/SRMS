@@ -10,7 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-require_once '../../src/config/database.php';
+// Change to SRMS root directory
+$rootDir = realpath(__DIR__ . '/../../..');
+if (strpos($rootDir, 'SRMS') !== false) {
+    chdir($rootDir);
+} else {
+    // Try to find SRMS directory
+    $srmsDir = $rootDir . '/SRMS';
+    if (is_dir($srmsDir)) {
+        chdir($srmsDir);
+    }
+}
+
+require_once 'src/config/database.php';
 
 class ResultsAPI {
     private $db;

@@ -11,7 +11,7 @@ header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 
 // Include configuration
-require_once '../src/config/database.php';
+require_once dirname(__DIR__) . '/src/config/database.php';
 
 // Simple router based on request
 $request = $_SERVER['REQUEST_URI'];
@@ -25,35 +25,36 @@ switch ($path) {
     case '/':
     case '':
     case '/home':
-        include '../src/views/index.html';
+        include dirname(__DIR__) . '/src/views/index.html';
         break;
         
     case '/result':
     case '/results':
-        include '../src/views/ResultPage.html';
+        include dirname(__DIR__) . '/src/views/ResultPage.html';
         break;
         
     case '/contact':
-        include '../src/views/Contact.html';
+        include dirname(__DIR__) . '/src/views/Contact.html';
         break;
         
     case '/notices':
-        include '../src/views/Notice.html';
+        include dirname(__DIR__) . '/src/views/Notice.html';
         break;
         
     case '/api/results':
-        include 'api/results.php';
+    case '/api/results.php':
+        include __DIR__ . '/api/results.php';
         break;
         
     case '/ResultShow.php':
     case '/ResultShow':
-        include 'ResultShow.php';
+        include __DIR__ . '/ResultShow.php';
         break;
         
     default:
         // 404 - Page not found
         http_response_code(404);
-        include '../src/views/404.html';
+        include dirname(__DIR__) . '/src/views/404.html';
         break;
 }
 

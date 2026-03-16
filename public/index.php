@@ -25,20 +25,20 @@ switch ($path) {
     case '/':
     case '':
     case '/home':
-        include dirname(__DIR__) . '/src/views/index.html';
+        include dirname(__DIR__) . '/src/views/index.php';
         break;
         
     case '/result':
     case '/results':
-        include dirname(__DIR__) . '/src/views/ResultPage.html';
+        include dirname(__DIR__) . '/src/views/ResultPage.php';
         break;
         
     case '/contact':
-        include dirname(__DIR__) . '/src/views/Contact.html';
+        include dirname(__DIR__) . '/src/views/Contact.php';
         break;
         
     case '/notices':
-        include dirname(__DIR__) . '/src/views/Notice.html';
+        include dirname(__DIR__) . '/src/views/Notice.php';
         break;
         
     case '/api/results':
@@ -54,7 +54,7 @@ switch ($path) {
     default:
         // 404 - Page not found
         http_response_code(404);
-        include dirname(__DIR__) . '/src/views/404.html';
+        include dirname(__DIR__) . '/src/views/404.php';
         break;
 }
 

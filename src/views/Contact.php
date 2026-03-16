@@ -1,4 +1,52 @@
-<!DOCTYPE html>
+<?php
+/**
+ * SRMS - Student Result Management System
+ * Contact Page
+ */
+
+// Include configuration
+require_once dirname(__DIR__) . '/config/Config.php';
+
+// Set page variables
+$appUrl = Config::get('APP_URL', 'http://localhost:8000');
+
+// Process form submission
+$successMessage = '';
+$errorMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Include validator
+    require_once dirname(__DIR__) . '/utils/Validator.php';
+    $validator = new Validator();
+    
+    $name = $validator->validateName($_POST['name'] ?? '');
+    $email = $validator->validateEmail($_POST['email'] ?? '');
+    $phone = $validator->validatePhone($_POST['phone'] ?? '');
+    $subject = $validator->validateName($_POST['subject'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+    
+    if ($name && $subject && !empty($message) && $validator->isValid()) {
+        // Here you would typically save to database or send email
+        // For now, we'll just show success message
+        $successMessage = 'Thank you for contacting us. We will get back to you soon!';
+        
+        // Log the contact attempt
+        require_once dirname(__DIR__) . '/utils/Logger.php';
+        $logger = Logger::getInstance();
+        $logger->info('Contact form submission', [
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'subject' => $subject
+        ]);
+    } else {
+        $errorMessage = 'Please fill in all required fields correctly.';
+    }
+}
+?>
+ 
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

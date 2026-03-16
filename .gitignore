@@ -1,1 +1,87 @@
+# IDE files
 .idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and configuration
+.env
+.env.local
+.env.production
+.env.staging
+config/local.php
+
+# Logs
+logs/
+*.log
+error.log
+access.log
+
+# Temporary files
+tmp/
+temp/
+cache/
+*.tmp
+*.cache
+
+# Backup files
+*.bak
+*.backup
+*.sql.gz
+
+# Upload directories
+uploads/
+files/
+storage/
+
+# Node modules (if using npm)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Composer (if using)
+vendor/
+composer.lock
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Build artifacts
+build/
+dist/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+
+# Apache/Nginx logs
+/var/log/
+
+# PHP error logs
+php_errors.log
+
+# Session files
+sessions/
+
+# Compiled templates
+*.tpl.php
+*.cache.php

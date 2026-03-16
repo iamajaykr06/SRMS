@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../../src/config/database.php';
+require_once __DIR__ . '/../../src/config/Config.php';
+require_once __DIR__ . '/../../src/middleware/RateLimiter.php';
+require_once __DIR__ . '/../../src/utils/Validator.php';
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
@@ -10,42 +15,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Change to SRMS root directory
-$rootDir = realpath(__DIR__ . '/../../..');
-if (strpos($rootDir, 'SRMS') !== false) {
-    chdir($rootDir);
-} else {
-    // Try to find SRMS directory
-    $srmsDir = $rootDir . '/SRMS';
-    if (is_dir($srmsDir)) {
-        chdir($srmsDir);
-    }
+// Initialize rate limiter
+$database = new Database();
+$db = $database->getConnection();
+$rateLimiter = new RateLimiter($db);
+
+// Get client IP and endpoint
+$clientIp = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+$endpoint = $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'];
+
+// Check rate limit
+if (!$rateLimiter->isAllowed($clientIp, $endpoint)) {
+    http_response_code(429);
+    header('Retry-After: ' . Config::get('API_RATE_WINDOW', 3600));
+    echo json_encode([
+        'error' => 'Rate limit exceeded',
+        'message' => 'Too many requests. Please try again later.'
+    ]);
+    exit;
 }
 
-require_once 'src/config/database.php';
+// Send rate limit headers
+$rateLimiter->sendHeaders($clientIp, $endpoint);
 
 class ResultsAPI {
     private $db;
+    private $validator;
     
-    public function __construct() {
-        $database = new Database();
-        $this->db = $database->getConnection();
-        
-        if (!$this->db) {
-            http_response_code(500);
-            echo json_encode(['error' => 'Database connection failed']);
-            exit;
-        }
+    public function __construct(PDO $db) {
+        $this->db = $db;
+        $this->validator = new Validator();
     }
     
     public function getResults(): void {
-        $roll_number = $_GET['roll_number'] ?? '';
-        $session = $_GET['session'] ?? '';
-        $semester = $_GET['semester'] ?? '';
+        $roll_number = $this->validator->validateRollNumber($_GET['roll_number'] ?? '');
+        $session = $this->validator->validateSession($_GET['session'] ?? '');
+        $semester = $this->validator->validateSemester($_GET['semester'] ?? '');
         
-        if (empty($roll_number)) {
+        if (!$roll_number) {
             http_response_code(400);
-            echo json_encode(['error' => 'Roll number is required']);
+            echo json_encode(['error' => 'Invalid or missing roll number', 'details' => $this->validator->getErrors()]);
+            return;
+        }
+        
+        if (!$this->validator->isValid()) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Invalid input parameters', 'details' => $this->validator->getErrors()]);
             return;
         }
         
@@ -138,17 +153,26 @@ class ResultsAPI {
     }
     
     public function addResult(): void {
-        $data = json_decode(file_get_contents('php://input'), true);
+        $input = file_get_contents('php://input');
+        $data = $this->validator->validateJson($input);
         
         if (!$data) {
             http_response_code(400);
-            echo json_encode(['error' => 'Invalid JSON data']);
+            echo json_encode(['error' => 'Invalid JSON data', 'details' => $this->validator->getErrors()]);
+            return;
+        }
+        
+        $validatedData = $this->validator->validateResultData($data);
+        
+        if (!$validatedData) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Invalid input data', 'details' => $this->validator->getErrors()]);
             return;
         }
         
         $required_fields = ['roll_number', 'subject_code', 'exam_id', 'internal_marks', 'external_marks'];
         foreach ($required_fields as $field) {
-            if (!isset($data[$field])) {
+            if (!isset($validatedData[$field])) {
                 http_response_code(400);
                 echo json_encode(['error' => "Missing required field: $field"]);
                 return;
@@ -158,7 +182,7 @@ class ResultsAPI {
         try {
             // Get student ID
             $student_stmt = $this->db->prepare("SELECT id FROM students WHERE roll_number = :roll_number");
-            $student_stmt->bindValue(':roll_number', $data['roll_number']);
+            $student_stmt->bindValue(':roll_number', $validatedData['roll_number']);
             $student_stmt->execute();
             $student = $student_stmt->fetch(PDO::FETCH_ASSOC);
             
@@ -170,7 +194,7 @@ class ResultsAPI {
             
             // Get subject ID
             $subject_stmt = $this->db->prepare("SELECT id FROM subjects WHERE subject_code = :subject_code");
-            $subject_stmt->bindValue(':subject_code', $data['subject_code']);
+            $subject_stmt->bindValue(':subject_code', $validatedData['subject_code']);
             $subject_stmt->execute();
             $subject = $subject_stmt->fetch(PDO::FETCH_ASSOC);
             
@@ -192,11 +216,11 @@ class ResultsAPI {
             $stmt = $this->db->prepare($query);
             $stmt->bindValue(':student_id', $student['id']);
             $stmt->bindValue(':subject_id', $subject['id']);
-            $stmt->bindValue(':exam_id', $data['exam_id']);
-            $stmt->bindValue(':internal_marks', $data['internal_marks']);
-            $stmt->bindValue(':external_marks', $data['external_marks']);
+            $stmt->bindValue(':exam_id', $validatedData['exam_id']);
+            $stmt->bindValue(':internal_marks', $validatedData['internal_marks']);
+            $stmt->bindValue(':external_marks', $validatedData['external_marks']);
             
-            $total = $data['internal_marks'] + $data['external_marks'];
+            $total = $validatedData['internal_marks'] + $validatedData['external_marks'];
             $status = ($total >= 40) ? 'pass' : 'fail';
             $stmt->bindValue(':status', $status);
             
@@ -226,7 +250,7 @@ class ResultsAPI {
 }
 
 // Handle requests
-$api = new ResultsAPI();
+$api = new ResultsAPI($db);
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':

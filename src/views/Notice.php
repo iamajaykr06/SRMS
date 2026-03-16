@@ -1,4 +1,71 @@
-<!DOCTYPE html>
+<?php
+/**
+ * SRMS - Student Result Management System
+ * Notices Page
+ */
+
+// Include configuration
+require_once dirname(__DIR__) . '/config/Config.php';
+
+// Set page variables
+$pageTitle = "Notices - JRU Student Result Management System";
+$appUrl = Config::get('APP_URL', 'http://localhost:8000');
+
+// Sample notices data (in production, this would come from database)
+$notices = [
+    [
+        'id' => 1,
+        'title' => 'Examination Schedule Released',
+        'content' => 'The examination schedule for the upcoming semester has been released. Please check the official website for detailed timetables.',
+        'date' => '2024-03-15',
+        'category' => 'Examination',
+        'priority' => 'high'
+    ],
+    [
+        'id' => 2,
+        'title' => 'Result Declaration Date',
+        'content' => 'Results for the previous semester will be declared on March 25, 2024. Students can check their results online.',
+        'date' => '2024-03-10',
+        'category' => 'Results',
+        'priority' => 'medium'
+    ],
+    [
+        'id' => 3,
+        'title' => 'Holiday Notice',
+        'content' => 'The university will remain closed on March 20, 2024, on account of Holi festival.',
+        'date' => '2024-03-08',
+        'category' => 'Holiday',
+        'priority' => 'low'
+    ],
+    [
+        'id' => 4,
+        'title' => 'Admission Open for New Session',
+        'content' => 'Admissions for the academic session 2024-25 are now open. Interested candidates can apply online.',
+        'date' => '2024-03-05',
+        'category' => 'Admission',
+        'priority' => 'high'
+    ],
+    [
+        'id' => 5,
+        'title' => 'Workshop on Career Development',
+        'content' => 'A workshop on career development will be organized on March 18, 2024. All students are requested to attend.',
+        'date' => '2024-03-01',
+        'category' => 'Event',
+        'priority' => 'medium'
+    ]
+];
+
+// Filter notices by category if specified
+$category = $_GET['category'] ?? '';
+if ($category) {
+    $notices = array_filter($notices, function($notice) use ($category) {
+        return strtolower($notice['category']) === strtolower($category);
+    });
+}
+?>
+ 
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

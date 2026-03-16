@@ -1,4 +1,74 @@
-<!DOCTYPE html>
+<?php
+/**
+ * SRMS - Student Result Management System
+ * Result Search Page
+ */
+
+// Include configuration
+require_once dirname(__DIR__) . '/config/Config.php';
+
+// Set page variables
+$appUrl = Config::get('APP_URL', 'http://localhost:8000');
+
+// Get form data if submitted
+$rollNumber = $_GET['roll_number'] ?? '';
+$session = $_GET['session'] ?? '';
+$semester = $_GET['semester'] ?? '';
+$studentData = null;
+$error = '';
+
+// Process form submission
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($rollNumber)) {
+    // Include validator
+    require_once dirname(__DIR__) . '/utils/Validator.php';
+    $validator = new Validator();
+    
+    // Validate inputs
+    $validatedRollNumber = $validator->validateRollNumber($rollNumber);
+    $validatedSession = $validator->validateSession($session);
+    $validatedSemester = $validator->validateSemester($semester);
+    
+    if ($validatedRollNumber && $validator->isValid()) {
+        // Call API to get results
+        $apiUrl = $appUrl . '/api/results?roll_number=' . urlencode($validatedRollNumber);
+        if ($validatedSession) {
+            $apiUrl .= '&session=' . urlencode($validatedSession);
+        }
+        if ($validatedSemester) {
+            $apiUrl .= '&semester=' . urlencode($validatedSemester);
+        }
+        
+        $context = stream_context_create([
+            'http' => [
+                'timeout' => 10,
+                'method' => 'GET'
+            ]
+        ]);
+        
+        $response = file_get_contents($apiUrl, false, $context);
+        
+        if ($response !== false) {
+            $data = json_decode($response, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                if (isset($data['error'])) {
+                    $error = $data['error'];
+                } else {
+                    $studentData = $data;
+                }
+            } else {
+                $error = 'Invalid response from server';
+            }
+        } else {
+            $error = 'Unable to connect to result server';
+        }
+    } else {
+        $error = 'Invalid roll number or parameters';
+    }
+}
+?>
+ 
+
+ <!DOCTYPE html>
 
 <html lang="en">
 

@@ -28,7 +28,6 @@ switch ($path) {
         include dirname(__DIR__) . '/src/views/index.php';
         break;
         
-    case '/result':
     case '/results':
         include dirname(__DIR__) . '/src/views/ResultPage.php';
         break;
@@ -46,9 +45,30 @@ switch ($path) {
         include __DIR__ . '/api/results.php';
         break;
         
-    case '/ResultShow.php':
-    case '/ResultShow':
-        include __DIR__ . '/ResultShow.php';
+    case '/result':
+    case '/result.php':
+        include dirname(__DIR__) . '/src/controllers/result.php';
+        break;
+        
+    case '/admin':
+    case '/admin/login':
+        include dirname(__DIR__) . '/src/views/admin/login.php';
+        break;
+        
+    case '/admin/dashboard':
+        include dirname(__DIR__) . '/src/views/admin/dashboard.php';
+        break;
+        
+    case '/admin/students':
+        include dirname(__DIR__) . '/src/views/admin/students.php';
+        break;
+        
+    case '/admin/results':
+        include dirname(__DIR__) . '/src/views/admin/results.php';
+        break;
+        
+    case '/admin/logout':
+        include dirname(__DIR__) . '/src/views/admin/logout.php';
         break;
         
     default:

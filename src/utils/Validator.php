@@ -447,4 +447,11 @@ class Validator {
     public function clearErrors(): void {
         $this->errors = [];
     }
+    
+    /**
+     * Basic sanitization method for admin panel
+     */
+    public function sanitize(string $input): string {
+        return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+    }
 }

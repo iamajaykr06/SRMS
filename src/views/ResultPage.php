@@ -935,7 +935,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($rollNumber)) {
                 semester: data.semester.replace(/\D/g, '')
             });
             
-            window.location.href = `ResultShow.html?${params.toString()}`;
+            window.location.href = `/result?${params.toString()}`;
 
         } catch (error) {
 

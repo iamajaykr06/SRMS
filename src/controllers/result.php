@@ -13,7 +13,7 @@ try {
        INPUT
     =============================== */
     $roll_number = $_GET['roll_number'] ?? '';
-    $session = $_GET['session'] ?? 'END SEM DEC 2024';
+    $session = $_GET['session'] ?? 'DEC 2024';
 
     /* ===============================
        DATABASE CONNECTION
@@ -69,12 +69,13 @@ try {
     /* ===============================
        UNIVERSITY INFO
     =============================== */
-    $uniStmt = $conn->query("SELECT * FROM universities LIMIT 1");
-    $university = $uniStmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$university) {
-        throw new Exception('University data not found.');
-    }
+    // Use default university info since universities table might not exist
+    $university = [
+        'name' => 'Jharkhand Rai University',
+        'address' => 'Ranchi, Jharkhand, India',
+        'established_text' => 'Established under Jharkhand State Legislature',
+        'logo_path' => '/assets/jrulogo.jpg'
+    ];
 
     /* ===============================
        SINGLE STUDENT MODE

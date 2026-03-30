@@ -26,7 +26,8 @@ class Validator {
             return null;
         }
         
-        $sanitized = preg_replace('/[^a-zA-Z0-9-]/', '', $rollNumber);
+        // Allow alphanumeric characters, forward slashes, and hyphens
+        $sanitized = preg_replace('/[^a-zA-Z0-9\/-]/', '', $rollNumber);
         
         if (strlen($sanitized) < 3 || strlen($sanitized) > 20) {
             $this->addError('Roll number must be between 3 and 20 characters');
@@ -157,19 +158,15 @@ class Validator {
             return null; // Session is optional
         }
         
-        $sanitized = trim(preg_replace('/[^a-zA-Z0-9-]/', '', $session));
+        // Allow alphanumeric characters, spaces, and hyphens
+        $sanitized = trim(preg_replace('/[^a-zA-Z0-9 -]/', '', $session));
         
-        if (!preg_match('/^[A-Z0-9-]+$/i', $sanitized)) {
-            $this->addError('Invalid session format');
-            return null;
-        }
-        
-        if (strlen($sanitized) > 20) {
+        if (strlen($sanitized) < 3 || strlen($sanitized) > 20) {
             $this->addError('Session is too long');
             return null;
         }
         
-        return strtoupper($sanitized);
+        return $sanitized;
     }
     
     /**

@@ -52,31 +52,55 @@
     </div>
 
     <!-- STUDENT INFO -->
-    <div class="grid grid-cols-4 text-[13px] px-4 py-3 gap-y-1">
+    <div class="text-[13px] px-4 py-3">
+        <div class="grid grid-cols-4 gap-y-1">
+            <p class="font-semibold">Roll No</p>
+            <p><?= $student['roll_number'] ?></p>
+            <p class="font-semibold text-left">Registration No</p>
+            <p class="text-left"><?= $student['registration_no'] ?? '-' ?></p>
 
-        <p class="font-semibold">Roll No</p>
-        <p><?= $student['roll_number'] ?></p>
-        <p class="font-semibold text-right">Registration No</p>
-        <p class="text-right"><?= $student['registration_no'] ?? '-' ?></p>
+            <p class="font-semibold">Name</p>
+            <p><?= $student['name'] ?></p>
+            <p class="font-semibold text-left">Semester</p>
+            <p class="text-left"><?= $student['semester'] ?></p>
+        </div>
 
-        <p class="font-semibold">Name</p>
-        <p><?= $student['name'] ?></p>
-        <p class="font-semibold text-right">Semester</p>
-        <p class="text-right"><?= $student['semester'] ?></p>
+        <?php if (!empty($student['father_name']) || !empty($student['mother_name'])): ?>
+        <div class="grid grid-cols-4 gap-y-1 mt-1">
+            <?php if (!empty($student['father_name'])): ?>
+            <p class="font-semibold">Father's Name</p>
+            <p><?= $student['father_name'] ?></p>
+            <?php else: ?>
+            <p></p>
+            <p></p>
+            <?php endif; ?>
+            
+            <p class="font-semibold text-left">Date of Birth</p>
+            <p class="text-left"><?= $student['dob'] ?? '-' ?></p>
 
-        <p class="font-semibold">Father's Name</p>
-        <p><?= $student['father_name'] ?></p>
-        <p class="font-semibold text-right">Date of Birth</p>
-        <p class="text-right"><?= $student['dob'] ?? '-' ?></p>
+            <?php if (!empty($student['mother_name'])): ?>
+            <p class="font-semibold">Mother's Name</p>
+            <p><?= $student['mother_name'] ?></p>
+            <?php else: ?>
+            <p></p>
+            <p></p>
+            <?php endif; ?>
+        </div>
+        <?php else: ?>
+        <div class="grid grid-cols-4 gap-y-1 mt-1">
+            <p class="font-semibold">Date of Birth</p>
+            <p class="text-left"><?= $student['dob'] ?? '-' ?></p>
+            <p></p>
+            <p></p>
+        </div>
+        <?php endif; ?>
 
-        <p class="font-semibold">Mother's Name</p>
-        <p><?= $student['mother_name'] ?></p>
-        <p></p>
-        <p></p>
-
-        <p class="font-semibold">Programme</p>
-        <p class="col-span-3"><?= $student['program_name'] ?></p>
-
+        <div class="grid grid-cols-4 gap-y-1 mt-1">
+            <p class="font-semibold">Programme</p>
+            <p class="col-span-3"><?= $student['program_name'] ?></p>
+            <p></p>
+            <p></p>
+        </div>
     </div>
 
     <!-- TABLE -->

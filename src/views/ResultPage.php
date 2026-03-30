@@ -223,33 +223,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($rollNumber)) {
 
 
                             <div class="dropdown-item px-4 py-2 hover:bg-white/20 cursor-pointer">
-
-                                END SEM DEC 2025
-
+                                DEC 2024
                             </div>
 
 
 
                             <div class="dropdown-item px-4 py-2 hover:bg-white/20 cursor-pointer">
-
-                                END SEM MAY 2025
-
+                                MAY 2024
                             </div>
 
 
 
                             <div class="dropdown-item px-4 py-2 hover:bg-white/20 cursor-pointer">
-
-                                END SEM DEC 2024
-
+                                DEC 2023
                             </div>
 
 
 
                             <div class="dropdown-item px-4 py-2 hover:bg-white/20 cursor-pointer">
-
-                                END SEM JUNE 2024
-
+                                MAY 2023
                             </div>
 
 

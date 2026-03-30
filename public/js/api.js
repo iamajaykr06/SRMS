@@ -5,7 +5,8 @@
 
 class SRMSAPI {
     constructor() {
-        this.baseURL = window.location.origin + '/api/results.php';
+        // Use direct access point for development server
+        this.baseURL = window.location.origin + '/api_results.php';
     }
 
     async request(endpoint, options = {}) {
@@ -41,12 +42,13 @@ class SRMSAPI {
         
         // Direct fetch call
         const response = await fetch(url);
-        const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.error || `HTTP error! status: ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
         }
         
+        const data = await response.json();
         return data;
     }
 

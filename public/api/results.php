@@ -66,26 +66,27 @@ class ResultsAPI {
         
         try {
             // Get student information
-            $student_query = "SELECT s.*, e.exam_name, e.session, e.year as exam_year, e.id as exam_id
+            $student_query = "SELECT s.*, e.exam_type, e.academic_year, e.exam_year, e.id as exam_id, p.program_name
                              FROM students s 
-                             JOIN examinations e ON s.semester = e.semester AND s.course = e.course";
+                             JOIN examinations e ON s.current_semester = e.semester AND s.program_id = e.program_id
+                             LEFT JOIN programs p ON s.program_id = p.id";
             
             $params = [];
-            $conditions = ["s.roll_number = :roll_number"];
+            $conditions = ["s.roll_no = :roll_number"];
             $params[':roll_number'] = $roll_number;
             
             if (!empty($session)) {
-                $conditions[] = "e.session = :session";
+                $conditions[] = "e.academic_year = :session";
                 $params[':session'] = $session;
             }
             
             if (!empty($semester)) {
-                $conditions[] = "s.semester = :semester";
+                $conditions[] = "s.current_semester = :semester";
                 $params[':semester'] = (int)$semester;
             }
             
             $student_query .= " WHERE " . implode(" AND ", $conditions);
-            $student_query .= " ORDER BY e.year DESC LIMIT 1";
+            $student_query .= " ORDER BY e.exam_year DESC LIMIT 1";
             
             $student_stmt = $this->db->prepare($student_query);
             foreach ($params as $key => $value) {
@@ -112,9 +113,11 @@ class ResultsAPI {
             $results_stmt->execute();
             $results = $results_stmt->fetchAll(PDO::FETCH_ASSOC);
             
-            // Calculate grades
+            // Calculate grades (grades are already stored in database)
             foreach ($results as &$result) {
-                $result['grade'] = $this->calculateGrade((float)$result['total_marks']);
+                if (!isset($result['grade'])) {
+                    $result['grade'] = $this->calculateGrade((float)$result['total_marks']);
+                }
             }
             
             // Calculate overall statistics
@@ -125,12 +128,12 @@ class ResultsAPI {
             
             $response = [
                 'student' => [
-                    'roll_number' => $student['roll_number'],
+                    'roll_number' => $student['roll_no'],
                     'name' => $student['name'],
-                    'course' => $student['course'],
-                    'semester' => $student['semester'],
-                    'exam_name' => $student['exam_name'],
-                    'session' => $student['session'],
+                    'course' => $student['program_name'],
+                    'semester' => $student['current_semester'],
+                    'exam_name' => $student['exam_type'],
+                    'session' => $student['academic_year'],
                     'year' => $student['exam_year']
                 ],
                 'results' => $results,
@@ -181,7 +184,7 @@ class ResultsAPI {
         
         try {
             // Get student ID
-            $student_stmt = $this->db->prepare("SELECT id FROM students WHERE roll_number = :roll_number");
+            $student_stmt = $this->db->prepare("SELECT id FROM students WHERE roll_no = :roll_number");
             $student_stmt->bindValue(':roll_number', $validatedData['roll_number']);
             $student_stmt->execute();
             $student = $student_stmt->fetch(PDO::FETCH_ASSOC);

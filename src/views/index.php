@@ -76,7 +76,7 @@ $appUrl = Config::get('APP_URL', 'http://localhost:8000');
         <!-- CTA Button with Glassmorphism -->
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button class="px-8 py-3 rounded-lg bg-white/10 backdrop-blur-xl border border-white/20 text-white font-semibold shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300">
-                <a href="/result" class="flex items-center gap-2">
+                <a href="/results" class="flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
@@ -135,7 +135,7 @@ $appUrl = Config::get('APP_URL', 'http://localhost:8000');
             <div>
                 <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="/result" class="text-gray-400 hover:text-yellow-400 transition-colors">Check Results</a></li>
+                    <li><a href="/results" class="text-gray-400 hover:text-yellow-400 transition-colors">Check Results</a></li>
                     <li><a href="/notices" class="text-gray-400 hover:text-yellow-400 transition-colors">Notices</a></li>
                     <li><a href="/contact" class="text-gray-400 hover:text-yellow-400 transition-colors">Contact Us</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Academic Calendar</a></li>

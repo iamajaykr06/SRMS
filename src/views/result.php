@@ -1,164 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Marksheet</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Jharkhand Rai University – End Semester Result</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-        body { font-family: Arial, Helvetica, sans-serif; }
-
         @media print {
             .no-print { display: none; }
             body { background: white; }
         }
     </style>
 </head>
+<body class="bg-gray-100">
 
-<body class="bg-white p-6">
+<div class="bg-gray-100 min-h-screen py-8">
+    <div class="w-full max-w-7xl mx-auto bg-white font-serif shadow-lg">
 
-<div class="max-w-5xl mx-auto border border-gray-400">
-
-    <!-- HEADER -->
-    <div class="p-4 border-b border-gray-400">
-
-        <div class="relative flex items-center justify-center">
-
-            <!-- LOGO -->
-            <img src="<?= htmlspecialchars($university['logo_path']) ?>"
-                 class="h-20 absolute left-2">
-
-            <!-- CENTER TEXT -->
-            <div class="text-center leading-tight">
-                <h1 class="text-2xl font-bold">
-                    <?= htmlspecialchars($university['name']) ?>
-                </h1>
-
-                <p class="text-sm">
-                    <?= htmlspecialchars($university['address']) ?>
+        <!-- Header -->
+        <div class="flex items-center pt-6 pb-3 px-4">
+            <img src="/assets/jrulogo.jpg" alt="jru-logo" height="100" width="100" class="shrink-0">
+            <div class="flex-1 flex flex-col items-center text-center">
+                <h1 class="text-2xl font-bold tracking-wide">Jharkhand Rai University</h1>
+                <p class="text-sm font-semibold mt-1">
+                    Jharkhand Rai University, Raja Ulatu, Namkum, Ranchi -<br />834010
                 </p>
-
-                <p class="text-xs">
-                    <?= htmlspecialchars($university['established_text']) ?>
+                <p class="text-[11px] mt-1 italic">
+                    Established under the Jharkhand Rai University Act, 2012 (Jharkhand Act, 03, 2012)
                 </p>
+                <h2 class="text-base font-extrabold underline mt-3 tracking-wide">
+                    <?= htmlspecialchars($sem['exam_title']) ?>
+                </h2>
             </div>
-
+            <div class="w-[100px] shrink-0"></div>
         </div>
 
-        <p class="text-center mt-3 font-semibold tracking-wide">
-            END SEMESTER EXAMINATION - <?= htmlspecialchars($session) ?>
-        </p>
-
-    </div>
-
-    <!-- STUDENT INFO -->
-    <div class="text-[13px] px-4 py-3">
-        <div class="grid grid-cols-4 gap-y-1">
-            <p class="font-semibold">Roll No</p>
-            <p><?= $student['roll_number'] ?></p>
-            <p class="font-semibold text-left">Registration No</p>
-            <p class="text-left"><?= $student['registration_no'] ?? '-' ?></p>
-
-            <p class="font-semibold">Name</p>
-            <p><?= $student['name'] ?></p>
-            <p class="font-semibold text-left">Semester</p>
-            <p class="text-left"><?= $student['semester'] ?></p>
-        </div>
-
-        <?php if (!empty($student['father_name']) || !empty($student['mother_name'])): ?>
-        <div class="grid grid-cols-4 gap-y-1 mt-1">
-            <?php if (!empty($student['father_name'])): ?>
-            <p class="font-semibold">Father's Name</p>
-            <p><?= $student['father_name'] ?></p>
-            <?php else: ?>
-            <p></p>
-            <p></p>
-            <?php endif; ?>
-            
-            <p class="font-semibold text-left">Date of Birth</p>
-            <p class="text-left"><?= $student['dob'] ?? '-' ?></p>
-
-            <?php if (!empty($student['mother_name'])): ?>
-            <p class="font-semibold">Mother's Name</p>
-            <p><?= $student['mother_name'] ?></p>
-            <?php else: ?>
-            <p></p>
-            <p></p>
-            <?php endif; ?>
-        </div>
-        <?php else: ?>
-        <div class="grid grid-cols-4 gap-y-1 mt-1">
-            <p class="font-semibold">Date of Birth</p>
-            <p class="text-left"><?= $student['dob'] ?? '-' ?></p>
-            <p></p>
-            <p></p>
-        </div>
-        <?php endif; ?>
-
-        <div class="grid grid-cols-4 gap-y-1 mt-1">
-            <p class="font-semibold">Programme</p>
-            <p class="col-span-3"><?= $student['program_name'] ?></p>
-            <p></p>
-            <p></p>
-        </div>
-    </div>
-
-    <!-- TABLE -->
-    <table class="w-full text-[13px] border border-gray-400 border-collapse">
-
-        <thead>
-        <tr class="bg-gray-200 text-center">
-            <th class="border border-gray-400 p-1">SR.NO.</th>
-            <th class="border border-gray-400 p-1">COURSE CODE</th>
-            <th class="border border-gray-400 p-1 text-left">COURSE</th>
-            <th class="border border-gray-400 p-1">CREDITS</th>
-            <th class="border border-gray-400 p-1">GRADE</th>
-            <th class="border border-gray-400 p-1">GRADE POINT</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php foreach ($courses as $i => $c): ?>
-            <tr>
-                <td class="border border-gray-400 p-1 text-center"><?= $i+1 ?></td>
-                <td class="border border-gray-400 p-1 text-center"><?= $c['subject_code'] ?></td>
-                <td class="border border-gray-400 p-1"><?= $c['subject_name'] ?></td>
-                <td class="border border-gray-400 p-1 text-center"><?= $c['credits'] ?></td>
-                <td class="border border-gray-400 p-1 text-center"><?= $c['grade'] ?></td>
-                <td class="border border-gray-400 p-1 text-center"><?= $c['grade_point'] ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-
-    </table>
-
-    <!-- SUMMARY -->
-    <div class="text-[13px] px-4 py-3 border-t border-gray-400">
-
-        <div class="flex justify-between">
-            <div class="flex gap-10">
-                <p><b>SGPA :</b> <?= $summary['sgpa'] ?></p>
-                <p><b>CGPA :</b> <?= $summary['cgpa'] ?></p>
+        <!-- Student Info -->
+        <div class="px-6 py-3 text-sm space-y-1.5">
+            <div class="flex">
+                <div class="flex w-[60%]">
+                    <span class="font-bold w-[140px] shrink-0">Roll No</span>
+                    <span><?= htmlspecialchars($student['roll_no']) ?></span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold w-[140px] shrink-0">Registration No</span>
+                    <span><?= htmlspecialchars($student['registration_no']) ?></span>
+                </div>
             </div>
-
-            <div>
-                <p><b>TOTAL CREDITS & EGP :</b> <?= $summary['total_credits'] ?> / <?= $summary['egp'] ?? '-' ?></p>
+            <div class="flex">
+                <div class="flex w-[60%]">
+                    <span class="font-bold w-[140px] shrink-0">Name</span>
+                    <span><?= htmlspecialchars($student['name']) ?></span>
+                </div>
+                <div class="flex">
+                    <span class="font-bold w-[140px] shrink-0">Semester</span>
+                    <span><?= htmlspecialchars($sem['semester_no']) ?></span>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="flex w-[60%]">
+                    <?php if (!empty($student['father_name'])): ?>
+                        <span class="font-bold w-[140px] shrink-0">Father's Name</span>
+                        <span><?= htmlspecialchars($student['father_name']) ?></span>
+                    <?php endif; ?>
+                </div>
+                <div class="flex">
+                    <span class="font-bold w-[140px] shrink-0">Date of Birth</span>
+                    <span><?= $dob ?></span>
+                </div>
+            </div>
+            <div class="flex">
+                <?php if (!empty($student['mother_name'])): ?>
+                    <span class="font-bold w-[140px] shrink-0">Mother's Name</span>
+                    <span><?= htmlspecialchars($student['mother_name']) ?></span>
+                <?php endif; ?>
+            </div>
+            <div class="flex">
+                <span class="font-bold w-[140px] shrink-0">Programme</span>
+                <span><?= htmlspecialchars($student['programme']) ?></span>
             </div>
         </div>
 
-        <div class="flex justify-end mt-2">
-            <p><b>CUMULATIVE CREDITS & EGP :</b> <?= $summary['cum_credits'] ?? '-' ?> / <?= $summary['cum_egp'] ?? '-' ?></p>
+        <!-- Results Table -->
+        <div class="px-6 pb-2">
+            <table class="w-full border-collapse text-sm">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-500 px-2 py-2 text-center w-[60px]">SR.NO.</th>
+                    <th class="border border-gray-500 px-2 py-2 text-center w-[130px]">COURSE CODE</th>
+                    <th class="border border-gray-500 px-2 py-2 text-center">COURSE</th>
+                    <th class="border border-gray-500 px-2 py-2 text-center w-[80px]">CREDITS</th>
+                    <th class="border border-gray-500 px-2 py-2 text-center w-[80px]">GRADE</th>
+                    <th class="border border-gray-500 px-2 py-2 text-center w-[100px]">GRADE POINT</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php while ($row = $resultsRes->fetch_assoc()): ?>
+                    <tr>
+                        <td class="border border-gray-500 px-2 py-3 text-center"><?= $row['sr_no'] ?></td>
+                        <td class="border border-gray-500 px-2 py-3 text-center"><?= htmlspecialchars($row['course_code']) ?></td>
+                        <td class="border border-gray-500 px-2 py-3"><?= htmlspecialchars($row['course_name']) ?></td>
+                        <td class="border border-gray-500 px-2 py-3 text-center"><?= number_format($row['credits'], 2) ?></td>
+                        <td class="border border-gray-500 px-2 py-3 text-center"><?= htmlspecialchars($row['grade']) ?></td>
+                        <td class="border border-gray-500 px-2 py-3 text-center"><?= number_format($row['grade_point'], 2) ?></td>
+                    </tr>
+                <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary -->
+        <div class="px-6 pb-6 text-sm space-y-1.5">
+            <div class="flex items-center">
+                <span class="font-bold mr-1">SGPA :</span>
+                <span class="mr-10"><?= number_format($sem['sgpa'], 2) ?></span>
+                <span class="font-bold mr-1">CGPA :</span>
+                <span class="mr-10"><?= number_format($sem['cgpa'], 2) ?></span>
+                <span class="font-bold mr-1 ml-auto">TOTAL CREDITS &amp; EGP :</span>
+                <span class="w-[60px] text-center"><?= number_format($sem['total_credits'], 2) ?></span>
+                <span class="w-[100px] text-right"><?= number_format($sem['total_egp'], 2) ?></span>
+            </div>
+            <div class="flex justify-end">
+                <span class="font-bold mr-1">CUMULATIVE CREDITS &amp; EGP :</span>
+                <span class="w-[60px] text-center"><?= number_format($sem['cumulative_credits'], 2) ?></span>
+                <span class="w-[100px] text-right"><?= number_format($sem['cumulative_egp'], 2) ?></span>
+            </div>
         </div>
 
     </div>
 
-</div>
+    <!-- Print Button -->
+    <div class="flex justify-center my-6 no-print">
+        <button onclick="window.print()"
+                class="bg-gray-700 text-white px-8 py-2 font-serif tracking-wide hover:bg-gray-900 cursor-pointer">
+            Print Result
+        </button>
+    </div>
 
-<!-- PRINT BUTTON -->
-<div class="text-center mt-6 no-print">
-    <button onclick="window.print()" class="px-4 py-2 bg-black text-white">
-        Print
-    </button>
 </div>
 
 </body>

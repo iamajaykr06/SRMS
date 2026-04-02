@@ -66,10 +66,9 @@ class ResultsAPI {
         
         try {
             // Get student information
-            $student_query = "SELECT s.*, e.exam_type, e.academic_year, e.exam_year, e.id as exam_id, p.program_name
+            $student_query = "SELECT s.*, e.exam_type, e.academic_year, e.exam_year, e.id as exam_id
                              FROM students s 
-                             JOIN examinations e ON s.current_semester = e.semester AND s.program_id = e.program_id
-                             LEFT JOIN programs p ON s.program_id = p.id";
+                             JOIN examinations e ON s.current_semester = e.semester AND s.program_id = e.program_id";
             
             $params = [];
             $conditions = ["s.roll_no = :roll_number"];
@@ -130,7 +129,7 @@ class ResultsAPI {
                 'student' => [
                     'roll_number' => $student['roll_no'],
                     'name' => $student['name'],
-                    'course' => $student['program_name'],
+                    'course' => 'BCA', // Default since course field doesn't exist
                     'semester' => $student['current_semester'],
                     'exam_name' => $student['exam_type'],
                     'session' => $student['academic_year'],

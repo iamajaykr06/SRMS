@@ -5,8 +5,8 @@
 
 class SRMSAPI {
     constructor() {
-        // Use direct access point for development server
-        this.baseURL = window.location.origin + '/api_results.php';
+        // Use correct API endpoint
+        this.baseURL = window.location.origin + '/api/results.php';
     }
 
     async request(endpoint, options = {}) {
